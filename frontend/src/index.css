@@ -1,0 +1,7 @@
+body {
+  background: url("./Assets/capitalmoviesBG.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  color: gainsboro;
+}
