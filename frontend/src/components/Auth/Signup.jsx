@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
 import style from "./style.module.css";
+import { postSignupData } from "../../redux/Auth/authSlice";
+import Loading from "../Loading/Loading";
 
 export default function Signup() {
+  const dispatch = useDispatch();
   const [emptyInput, setEmptyInput] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [signupData, setSignupData] = useState({
     full_name: "",
     email: "",
@@ -19,9 +24,13 @@ export default function Signup() {
       setEmptyInput(true);
       return;
     }
-    console.log(signupData);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      dispatch(postSignupData(signupData));
+    }, 2000);
+    return;
   };
-
   return (
     <Box style={{ width: "100%" }}>
       <Stack className={style.auth_box} spacing={2} direction="column">
@@ -56,9 +65,13 @@ export default function Signup() {
           size="small"
           label="Password"
         />
-        <Button variant="contained" onClick={handleSignup}>
-          Sign Up
-        </Button>
+        {loading ? (
+          <Loading/>
+        ) : (
+          <Button variant="contained" onClick={handleSignup}>
+            Sign Up
+          </Button>
+        )}
       </Stack>
     </Box>
   );

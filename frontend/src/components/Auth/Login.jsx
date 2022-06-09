@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import style from "./style.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginUser } from "../../redux/Auth/authSlice";
+import Loading from "../Loading/Loading";
 
 export default function Login() {
+  const dispatch = useDispatch();
+  const { data, loading2, error, success } = useSelector(
+    (state) => state.login
+  );
+  const [loading, setLoading] = useState(false);
   const [emptyInput, setEmptyInput] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
@@ -18,9 +26,19 @@ export default function Login() {
       setEmptyInput(true);
       return;
     }
-    console.log(loginData);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      dispatch(getLoginUser(loginData));
+    }, 2000);
+    return;
   };
-
+  if (success) {
+    const { token, user } = data;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    console.log(token, user);
+  }
   return (
     <Box style={{ width: "100%" }}>
       <Stack className={style.auth_box} spacing={2} direction="column">
@@ -46,9 +64,13 @@ export default function Login() {
           size="small"
           label="Password"
         />
-        <Button variant="contained" onClick={handleLogin}>
-          Login
-        </Button>
+        {loading ? (
+          <Loading />
+        ) : (
+          <Button variant="contained" onClick={handleLogin}>
+            Login
+          </Button>
+        )}
       </Stack>
     </Box>
   );
