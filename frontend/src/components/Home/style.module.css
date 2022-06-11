@@ -1,0 +1,63 @@
+.movie_Box {
+  border: 1px solid rgb(122, 115, 115);
+  height: 62vh;
+  text-align: center;
+}
+.movie_overview {
+  cursor: pointer;
+  width: 98%;
+  margin: auto;
+  position: relative;
+  height: 95%;
+  opacity: 0;
+  transform: translateY(-104%);
+}
+.movie_overview:hover {
+  background: #000000;
+  opacity: .8;
+  color: rgb(255, 255, 255);
+  animation-name: example;
+  animation-duration: 0.8s;
+}
+@keyframes example {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(-105%);
+  }
+}
+
+.overview_body {
+  font-size: 10px;
+  font-weight: 100;
+  line-height: 1.5;
+}
+
+/* Medium Screen */
+@media only screen and (max-width: 1007px) {
+  .movie_Box {
+    border: 1px solid rgb(122, 115, 115);
+    height: 58vh;
+    text-align: center;
+  }
+  .overview_body {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.5;
+  }
+}
+
+/* Small Screen */
+@media only screen and (max-width: 640px) {
+  .movie_Box {
+    border: 1px solid rgb(122, 115, 115);
+    height: 58vh;
+    text-align: center;
+  }
+  .overview_body {
+    font-size: 10px;
+    font-weight: 100;
+    line-height: 1.5;
+  }
+}

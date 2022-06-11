@@ -3,7 +3,7 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import style from "./style.module.css";
 import { postSignupData } from "../../redux/Auth/authSlice";
-import Loading from "../Loading/Loading";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function Signup() {
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ export default function Signup() {
           label="Password"
         />
         {loading ? (
-          <Loading/>
+          <Box><CircularProgress sx={{margin:'auto'}}></CircularProgress></Box>
         ) : (
           <Button variant="contained" onClick={handleSignup}>
             Sign Up

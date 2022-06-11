@@ -1,11 +1,15 @@
+.loading_box {
+  width: 100%;
+}
 .waviy {
-  position: relative;
+  margin: auto;
+  width: 20%;
 }
 .waviy span {
   position: relative;
   display: inline-block;
   font-size: 20px;
-  color: rgba(9, 221, 244, 0.728);
+  color: rgb(253, 253, 253);
   text-transform: uppercase;
   animation: flip 2s infinite;
   

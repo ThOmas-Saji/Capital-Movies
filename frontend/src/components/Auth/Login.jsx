@@ -3,13 +3,14 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import style from "./style.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoginUser } from "../../redux/Auth/authSlice";
-import Loading from "../Loading/Loading";
+import CircularProgress from "@mui/material/CircularProgress";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const user = JSON.parse(localStorage.getItem("user")) || false;
   const dispatch = useDispatch();
-  const { data, loading2, error, success } = useSelector(
-    (state) => state.login
-  );
+  const navigate = useNavigate();
+  const { data, success } = useSelector((state) => state.login);
   const [loading, setLoading] = useState(false);
   const [emptyInput, setEmptyInput] = useState(false);
   const [loginData, setLoginData] = useState({
@@ -37,7 +38,10 @@ export default function Login() {
     const { token, user } = data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-    console.log(token, user);
+  }
+  if (user) {
+    navigate("/discover/popular");
+    return;
   }
   return (
     <Box style={{ width: "100%" }}>
@@ -65,7 +69,9 @@ export default function Login() {
           label="Password"
         />
         {loading ? (
-          <Loading />
+          <Box>
+            <CircularProgress sx={{ margin: "auto" }}></CircularProgress>
+          </Box>
         ) : (
           <Button variant="contained" onClick={handleLogin}>
             Login

@@ -1,11 +1,16 @@
 .navbar {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
 }
-.header_box{
-  margin:auto;
+.header_box {
+  margin: auto;
+  height: fit-content;
 }
-.animate_charcter{
+.animate_charcter {
+  font-size: 35px;
+  font-weight: 500;
   background-image: linear-gradient(
     -205deg,
     #e3480b 0%,
@@ -25,7 +30,7 @@
 }
 
 @keyframes textclip {
-  from{
+  from {
     background-position: 0% center;
   }
   to {
@@ -35,10 +40,18 @@
 
 /* Medium Screen */
 @media only screen and (max-width: 1007px) {
-
+  .navbar {
+    font-size: 12px;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr 1fr;
+  }
 }
 
 /* Small Screen */
 @media only screen and (max-width: 640px) {
-
+  .navbar {
+    font-size: 12px;
+    grid-template-columns: 1fr ;
+    grid-template-rows: 1fr 1fr;
+  }
 }

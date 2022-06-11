@@ -1,4 +1,5 @@
 .link-tag {
+  height: fit-content;
   text-decoration: none;
   color: gainsboro;
 }

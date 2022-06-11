@@ -12,25 +12,24 @@ import {
 import React, { useEffect, useRef, useState } from "react";
 import style from "./style.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getPopularMovies } from "../../redux/Movies/fetchMovies";
+import { getLatestMovies } from "../../redux/Movies/fetchMovies";
 import AddFavorite from "../AddFavorite/AddFavorite";
 import Loading from "../Loading/Loading";
+import error404Img from "../../Assets/404NF.png";
 
-export default function Home() {
+export default function LatestMovies() {
   const user = JSON.parse(localStorage.getItem("user")) || false;
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.popularMovies);
+  const { data } = useSelector((state) => state.latestMovies);
   const [movies, setMovies] = useState(false);
   const [loading, setLoading] = useState(true);
-
   // const [favoriteIcn, setFavoriteIcn] = useState(false);
-
   let callOne = useRef(false);
   useEffect(() => {
-    dispatch(getPopularMovies());
-    setTimeout(()=>{
-      setLoading(false)
-    },1500)
+    dispatch(getLatestMovies());
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
     callOne.current = true;
     setMovies(true);
     if (callOne) {
@@ -41,6 +40,7 @@ export default function Home() {
   if (loading) {
     return <Loading />;
   }
+  console.log(data)
   return (
     <Container>
       <Grid
@@ -56,29 +56,33 @@ export default function Home() {
                     <img
                       width="100%"
                       height="100%"
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      src={
+                        movie.poster_path
+                          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                          : error404Img
+                      }
                       alt="movie_poster"
                     />
                     {user ? (
-                      <AddFavorite title={movie.title} />
+                      <AddFavorite title={movie?.title} />
                     ) : (
                       <ImageListItemBar
                         sx={{
                           background:
-                          "linear-gradient(to bottom, #000000df 20%, " +
-                          "#000000ae 70%, rgba(0,0,0,0) 100%)",
+                            "linear-gradient(to top, #000000df 20%, " +
+                            "#000000ae 80%, rgba(0,0,0,0) 100%)",
                         }}
-                        title={movie.title}
+                        title={movie?.title}
                         position="top"
                       />
                     )}
                     <ImageListItemBar
-                      title={`${movie.vote_average}/10`}
-                      subtitle={`${movie.release_date}/10`}
+                      title={`${movie?.vote_average}/10`}
+                      subtitle={`${movie?.release_date}`}
                       sx={{
                         background:
-                        "linear-gradient(to top, #000000df 20%, " +
-                        "#000000ae 80%, rgba(0,0,0,0) 100%)",
+                          "linear-gradient(to top, #000000df 20%, " +
+                          "#000000ae 80%, rgba(0,0,0,0) 100%)",
                       }}
                     />
                   </ImageListItem>
@@ -90,7 +94,7 @@ export default function Home() {
                         }
                       />
                       <CardContent>
-                        <p className={style.overview_body}>{movie.overview}</p>
+                        <p className={style.overview_body}>{movie?.overview}</p>
                       </CardContent>
                     </Card>
                   </Box>

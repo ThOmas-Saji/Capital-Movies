@@ -4,7 +4,17 @@ import Login from "./Login";
 import Signup from "./Signup";
 
 export default function Auth() {
+  const user = JSON.parse(localStorage.getItem("user")) || false;
   const [switchAuth, setSwitchAuth] = useState(false);
+  if (user) {
+    return (
+      <Box style={{ width: "100%" }}>
+        <Box sx={{ margin: "auto" }}>
+          <Typography variant="h3">{user.full_name} is Logged In</Typography>
+        </Box>
+      </Box>
+    );
+  }
   return (
     <Box style={{ width: "100%" }}>
       {switchAuth ? <Login /> : <Signup />}
