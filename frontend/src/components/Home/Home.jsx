@@ -23,8 +23,6 @@ export default function Home() {
   const [movies, setMovies] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // const [favoriteIcn, setFavoriteIcn] = useState(false);
-
   let callOne = useRef(false);
   useEffect(() => {
     dispatch(getPopularMovies());
@@ -60,7 +58,7 @@ export default function Home() {
                       alt="movie_poster"
                     />
                     {user ? (
-                      <AddFavorite title={movie.title} />
+                      <AddFavorite movie={movie} title={movie.title}/>
                     ) : (
                       <ImageListItemBar
                         sx={{

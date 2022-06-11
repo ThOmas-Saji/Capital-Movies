@@ -40,7 +40,7 @@ export default function LatestMovies() {
   if (loading) {
     return <Loading />;
   }
-  console.log(data)
+  
   return (
     <Container>
       <Grid
@@ -64,12 +64,12 @@ export default function LatestMovies() {
                       alt="movie_poster"
                     />
                     {user ? (
-                      <AddFavorite title={movie?.title} />
+                      <AddFavorite movie={movie} title={movie?.title} />
                     ) : (
                       <ImageListItemBar
                         sx={{
                           background:
-                            "linear-gradient(to top, #000000df 20%, " +
+                            "linear-gradient(to bottom, #000000df 20%, " +
                             "#000000ae 80%, rgba(0,0,0,0) 100%)",
                         }}
                         title={movie?.title}

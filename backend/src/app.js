@@ -5,6 +5,11 @@ require("dotenv").config();
 
 const connect = require("./database/connect");
 
+// favourites Control
+
+const favouritesController = require("./controllers/favouritesController");
+app.use("/favourites", favouritesController);
+
 //auth Control
 const { register, login } = require("./auth/auth_controller");
 app.post("/register", register);

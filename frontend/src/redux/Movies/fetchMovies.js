@@ -50,7 +50,8 @@ export const getLatestMovies = createAsyncThunk(
   async (args, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        "https://api.themoviedb.org/3/discover/movie?api_key=430a62f950fea28642aee10a67ff9b53&language=en-US&sort_by=revenue.asc&include_adult=false&include_video=false&page=1&primary_release_year=2022&primary_release_date.gte=2022&primary_release_date.lte=2022&with_watch_monetization_types=flatrate"
+        // "https://api.themoviedb.org/3/discover/movie?api_key=430a62f950fea28642aee10a67ff9b53&language=en-US&sort_by=revenue.asc&include_adult=false&include_video=false&page=1&primary_release_year=2022&primary_release_date.gte=2022&primary_release_date.lte=2022&with_watch_monetization_types=flatrate"
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=c45cb24ed784069fcbc37dac1de06142&language=en-US&page=1'
       );
       return data.results;
     } catch (err) {
