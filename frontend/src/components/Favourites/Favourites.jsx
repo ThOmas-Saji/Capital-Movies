@@ -21,6 +21,7 @@ export default function Favourites() {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.getFavouriteData);
   const [movies, setMovies] = useState(false);
+  const [changes, setChanges] = useState(true);
   const [loading, setLoading] = useState(true);
   let callOne = useRef(false);
 
@@ -34,7 +35,11 @@ export default function Favourites() {
     if (callOne) {
       return () => {};
     }
-  }, []);
+  }, [changes]);
+
+  const makeChanges = () => {
+    setChanges(!changes);
+  };
 
   if (loading) {
     return <Loading />;
@@ -51,6 +56,7 @@ export default function Favourites() {
       </Box>
     );
   }
+
   return (
     <Container>
       <Grid
@@ -70,7 +76,12 @@ export default function Favourites() {
                       alt="movie_poster"
                     />
                     {user ? (
-                      <AddFavorite movie={movie} title={movie?.title} />
+                      <AddFavorite
+                        ifMakeChange={true}
+                        makeChanges={makeChanges}
+                        movie={movie}
+                        title={movie?.title}
+                      />
                     ) : (
                       <ImageListItemBar
                         sx={{

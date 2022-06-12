@@ -16,13 +16,16 @@ export default function AddFavorite(props) {
     release_date: props.movie?.release_date,
     vote_average: props.movie?.vote_average,
     overview: props.movie?.overview,
-    movie_id: typeof props.movie.id == "number" ? props.movie.id.toString() : props.movie?.id || props?.title,
+    movie_id:
+      typeof props.movie.id == "number"
+        ? props.movie.id.toString()
+        : props.movie?.id || props?.title,
   });
   useEffect(() => {
     (function () {
       axios
         .post(`http://localhost:9876/favourites/one`, {
-          id: props.movie?.id || props.movie.movie_id  ||props?.title,
+          id: props.movie?.id || props.movie.movie_id || props?.title,
           user_id: user?._id,
         })
         .then(({ data }) => {
@@ -41,8 +44,11 @@ export default function AddFavorite(props) {
         user_id: user?._id,
       })
     );
-    setFavoriteIcn(!favoriteIcn);
-    window.location.reload(false)
+    if (props.ifMakeChange) {
+      props.makeChanges();
+    } else {
+      setFavoriteIcn(!favoriteIcn);
+    }
   };
   const addTofavorite = () => {
     dispatch(postFavData(formData));

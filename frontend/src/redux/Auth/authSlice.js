@@ -12,6 +12,7 @@ export const postSignupData = createAsyncThunk(
       return;
     } catch (err) {
       alert(err.message);
+      window.location.reload(false)
       rejectWithValue(err);
     }
   }
@@ -56,6 +57,7 @@ export const getLoginUser = createAsyncThunk(
       return data;
     } catch (err) {
       alert(err.message);
+      window.location.reload(false)
       rejectWithValue(err);
     }
   }

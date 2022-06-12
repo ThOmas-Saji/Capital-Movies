@@ -58,7 +58,7 @@ export default function Home() {
                       alt="movie_poster"
                     />
                     {user ? (
-                      <AddFavorite movie={movie} title={movie.title}/>
+                      <AddFavorite ifMakeChange={false} movie={movie} title={movie.title}/>
                     ) : (
                       <ImageListItemBar
                         sx={{

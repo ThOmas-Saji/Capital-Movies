@@ -17,6 +17,7 @@ export default function Navbar() {
     if (logout) {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
+      navigate('/discover/popular')
       window.location.reload(false);
       return;
     } else {
