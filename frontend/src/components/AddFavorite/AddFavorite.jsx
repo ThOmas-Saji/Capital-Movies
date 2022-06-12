@@ -24,7 +24,7 @@ export default function AddFavorite(props) {
   useEffect(() => {
     (function () {
       axios
-        .post(`http://localhost:9876/favourites/one`, {
+        .post(`https://captial-movies-backend.herokuapp.com/favourites/one`, {
           id: props.movie?.id || props.movie.movie_id || props?.title,
           user_id: user?._id,
         })

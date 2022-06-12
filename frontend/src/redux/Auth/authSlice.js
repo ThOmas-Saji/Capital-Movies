@@ -6,7 +6,7 @@ export const postSignupData = createAsyncThunk(
   "SIGNUP/getData",
   async (formData, { rejectWithValue }) => {
     try {
-      await axios.post("http://localhost:9876/register", formData);
+      await axios.post("https://captial-movies-backend.herokuapp.com/register", formData);
       alert("Signup success");
       window.location.reload(false);
       return;
@@ -50,7 +50,7 @@ export const getLoginUser = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:9876/login",
+        "https://captial-movies-backend.herokuapp.com/login",
         formData
       );
       alert("Login success");

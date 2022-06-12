@@ -6,7 +6,7 @@ export const postFavData = createAsyncThunk(
   "ADD_FAV/postData",
   async (formData, { rejectWithValue }) => {
     try {
-      await axios.post("http://localhost:9876/favourites", formData);
+      await axios.post("https://captial-movies-backend.herokuapp.com/favourites", formData);
       return;
     } catch (err) {
       alert(err.message);
@@ -46,7 +46,7 @@ export const deleteFavData = createAsyncThunk(
   "REMOVE_FAV/deleteData",
   async (formData, { rejectWithValue }) => {
     try {
-      await axios.post("http://localhost:9876/favourites/delete", formData);
+      await axios.post("https://captial-movies-backend.herokuapp.com/favourites/delete", formData);
       return;
     } catch (err) {
       alert(err.message);
@@ -86,7 +86,7 @@ export const getFavData = createAsyncThunk(
   async (_id, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:9876/favourites/${_id}`
+        `https://captial-movies-backend.herokuapp.com/favourites/${_id}`
       );
       return data;
     } catch (err) {
