@@ -38,8 +38,6 @@ export default function Login() {
     const { token, user } = data;
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
-  }
-  if (user) {
     navigate("/discover/popular");
     return;
   }

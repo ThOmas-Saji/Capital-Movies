@@ -54,6 +54,7 @@ export const getLoginUser = createAsyncThunk(
         formData
       );
       alert("Login success");
+      window.location.reload(false)
       return data;
     } catch (err) {
       alert(err.message);

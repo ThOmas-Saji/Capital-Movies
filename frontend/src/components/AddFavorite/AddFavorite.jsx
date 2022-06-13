@@ -45,6 +45,7 @@ export default function AddFavorite(props) {
       })
     );
     if (props.ifMakeChange) {
+      setFavoriteIcn(!favoriteIcn);
       props.makeChanges();
     } else {
       setFavoriteIcn(!favoriteIcn);
